@@ -32,7 +32,7 @@ def checkWin(xState, zState):
 if __name__ == "__main__":
     xState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     zState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    turn = 1
+    turn = 1  # turn = 1-1 = 0 and 1-0 = 1  
 
     print('tic tac toe')
     while(True):
@@ -40,11 +40,19 @@ if __name__ == "__main__":
         if(turn == 1):
             print('X" Chance')
             value = int(input("Enter Your Place :- "))
-            xState[value] = 1
+            if  xState[value] == 1 or zState[value] == 1:
+                print('you cannot overwrite move')
+                turn = 0
+            else:
+                xState[value] = 1
         else:
             print('0" Chance')
             value = int(input("Enter Your Place :- "))
-            zState[value] = 1
+            if  zState[value] == 1 or  xState[value] == 1 :
+                print('you cannot overwrite move')
+                turn = 1
+            else:
+                zState[value] = 1
         cwin = checkWin(xState, zState)
 
         if(cwin != -1):
